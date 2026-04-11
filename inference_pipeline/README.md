@@ -27,7 +27,7 @@ input_data.xlsx
 pip install openai pandas openpyxl
 ```
 
-A running [Ollama](https://ollama.com/) instance with e.g. the `gemma3:27b` model is required:
+A running [Ollama](https://ollama.com/) instance with e.g. `gemma3:27b` model is required:
 
 ```bash
 ollama pull gemma3:27b

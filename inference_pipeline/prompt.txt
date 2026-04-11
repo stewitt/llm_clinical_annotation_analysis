@@ -1,0 +1,77 @@
+
+Few Shot Prompt zur Extraktion entfernter Läsionen
+Aufgabe
+Extrahiere aus einem endoskopischen Befundtext nur die Adenome, die tatsächlich entfernt wurden. Gib die Ergebnisse als strukturierte Liste aus, jede Zeile im Format:
+Standort; Größe; Methode
+Gib nur die Ergebnisse aus, keine zusätzliche Erklärung oder Einleitung!
+Wenn ein Adenom nur biopsiert oder belassen wurde, nicht in die Liste aufnehmen. Wenn mehrere Adenome entfernt wurden, jede als eigene Zeile.
+Zuordnungsregeln
+•	Entfernt = Formulierungen wie als Ganzes (en-bloc) oder in Teilen (fraktioniert). Falls ein Polyp fraktioniert aber insgesamt in toto entfernt wurde, ist es fraktioniert. Falls keine weiteren Angaben, dann ist es en-bloc
+•	Nicht entfernen = Formulierungen wie biopsiert, belassen, im Rückzug belassen, nur biopsiert → diese Adenome weglassen.
+•	Größe: wenn im Text angegeben wie im Text angegeben übernehmen, sonst als nicht angegeben markieren.
+•	Standort: so präzise wie möglich (z. B. Sigma, Colon ascendens, Colon transversum, Rektum, linke Flexur, rechte Flexur, Zökum, 18 cm a.a.).  
+
+report:
+unauffällig. Im Sigma Polypenknospe, PE II. Glatte Einführung bis in das Zökum. hier findet sich hinter der Klappe ein 60 x 90 mm durchmessender adenoider Tumor. Randomisatiojn auf STEP in GG 3. Gutes Anheben auf Unterspritzung mit HydroJet. Fraktionierte komplette Resektion, keine Blutung. Kleine Reste werden mit APC versorgt, bis makroskopisch kein Tumor mehr verblieben ist. Am Rand der Resektionsfläche entsteht ein schlitzförmiger Muscularisdefekt, der mit 4 Clips verschlossen wird, Abpunktieren freier Luft. Bergung im Netz (I)
+
+Erwartete Ausgabe:
+- Zökum; 60 × 90 mm; fraktioniert
+
+report:
+Vorspiegeln bis zum unauffälligem Ende des Hartmannstumpfes bei 28 cm a.a. bei 18 cm a.a. das ca. 1 x 1 cm große Adenom, welches nach Unterspritzen mit HAES/TB in toto entfernt wird. durch das Stoma Vorspiegeln bis zum Coecalpol, dort zeigt sich ein kleines Adenom im Coecalpol, welches mit der Zange entfernt wird (PE I). Ein weiteres ca. 1,5 x 1 cm großes flaches Adenom gegenüber der IC-Klappe wird biopsiert und belassen (PE II). Direkt auf der IC-Klappe zeigt sich ein ca. 3 x 2 cm großes suspektes Adenom, welches lediglich biopsiert wird (PE III). Im C. ascendens finden sich in kleinem Abstand 3 aufsitzende Adenome von ca. 5 mm, 8 mm und 10 mm Größe, welche nach Aufspritzen mit HAES/TB mit der Schlinge in toto entfernt werden. (PE IV). Die Adenome werden mit dem Netz geborgen. Ein weiteres Adenom im C. transversum gut 1 cm messend wird im Rückzug belassen. Das restliche Kolon stellt sich als unauffällig dar.
+
+Erwartete Ausgabe:
+- 18 cm a.a.; 1 × 1 cm; en-bloc
+- Coecalpol; nicht angegeben; en-bloc
+- Colon ascendens; 5 mm; en-bloc
+- Colon ascendens; 8 mm; en-bloc
+- Colon ascendens; 10 mm; en-bloc
+
+
+report:
+In Inversion unauffällig. Mit Schienung Vorspiegeln zum Coecalpol und intubation des terminalen Ileum über 15cm. Unauffällige Ileumschleimhaut. #Zwei falten distal der IC-Klappe zeigen sich zwei 1cm große flache Polype die nach unterspritzung mit der Schlinge vollständig abgetragen werden können nur einer kann asserviert werden (PEIII). Im distalen C. ascendens zeigen sich zwei 1cm Polypen die zusammen asserviert werden nach Schlingen abtragung (PEIV). Linke Flexur abtragung von einem weitern Polyp 1cm Schlinge (PEV) und im C. descendens gestilter Polyp mit der Schlinge abgetragen (PEVI). #Isgesamt ausgeprägte Divertikulose punctum maximum  im Sigma.
+
+Erwartete Ausgabe:
+- IC-Klappe; 1 cm; en-bloc
+- IC-Klappe; 1 cm; en-bloc
+- Colon ascendens; 1 cm; en-bloc 
+- Colon ascendens; 1 cm; en-bloc 
+- linke Flexur; 1 cm; en-bloc
+- Colon descendens; nicht angegeben; en-bloc
+
+
+report:
+zwischen 5 und 8 cm ab ano etwa 35 mm durchmessender flach erhabener Tumor, daneben 3 jeweils etwa 7 mm große Satelliten, von denen einer entfernt und geborgen wird (III), einer entfernt und einer belassen. Der Hauptbefund wird mit Hybridknife unterspritzt und umschnitten, dabei auftretende Blutungen werden mit Coag-Grasper versorgt. Patient wird unruhig, deshalb Abkürzung der Prozedur und Resektion in 3 Portionen mit Schlinge. Blutstillung mit 3 Clips, Koagulation. Glatte Einführung bis in das Zökum. Im gesamten Colon, aber besonders häufig im Sigma zahlreiche große reizlose Divertikel. Im Sigma auf etwa 25 cm Länge fleckige Rötung (PE II).#Im Colon descendens (110 cm beim Einführen) wird ein flach erhabener adenoider Tumor 12 mm unterspritzt und abgetragen, daneben ein weiterer 5 mm direkt abgetragen (I).
+
+Erwartete Ausgabe:
+- 5–8 cm ab ano; 35 mm; fraktioniert
+- 5–8 cm ab ano; 7 mm; en-bloc
+- 5–8 cm ab ano; 7 mm; en-bloc
+- Colon descendens; 12 mm; en-bloc
+- Colon descendens; 5 mm; en-bloc
+
+
+report:
+unauffällig Sigma mit zahlreichen Divertikeln und sehr abgewinkelt. Ansonsten glatte Passage bis in das Zökum. Aus der IC-Klappe 2 x PE (I) zum Ausschluß Adenom. daneben flach erhabener adenoider Tumor 25 x 35 mm, Randomisation auf STEP, gutes Anheben auf Unterspritzung, subtotale Resektion in 1 Stück (II), der Rest wird mit APC versorgt.
+
+Erwartete Ausgabe:
+- IC-Klappe; 25x35 mm; fraktioniert
+
+
+Gib deine Antwort ausschließlich als gültiges JSON-Objekt zurück.
+
+Es sind genau zwei Felder erlaubt:
+1. "reasoning": eine kurze externe Zusammenfassung deiner Überlegungen (keine internen Gedanken, kein <think>)
+2. "answer": ein einzelner String, der die finale Antwort enthält. Keine Arrays, keine Objekte, nur Text.
+
+Formatvorgaben für "answer":
+- Jede entfernte Läsion in einer eigenen Zeile
+- Format jeder Zeile: "<Ort>; <Größe>; <Entfernungsmethode>"
+- Zeilen durch "\n" trennen
+- Keine weiteren Felder, keine zusätzlichen Strukturen.
+
+Wichtig:
+- Gib absolut keinen Text außerhalb des JSON aus.
+- Keine Erklärungen, keine Kommentare, keine internen Gedanken, kein <think>.
+- Nur ein einziges JSON-Objekt.
+

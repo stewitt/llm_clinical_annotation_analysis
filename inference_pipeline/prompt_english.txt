@@ -1,0 +1,56 @@
+Few-Shot Prompt for extracting removed lesions
+Task: Extract from an endoscopic report text only the adenomas that were actually removed. Output the results as a structured list, each line in the format: Location; Size; Method
+Output only the results, no additional explanation or introduction! If an adenoma was only biopsied or left in place, do not include it in the list. If multiple adenomas were removed, list each as a separate line.
+Assignment Rules
+-	Removed = phrasing such as removed as a whole (en-bloc) or in parts (piecemeal). If a polyp was removed piecemeal but overall completely, it counts as piecemeal. If no further details are given, it is en-bloc.
+-	Not removed = phrasing such as biopsied, left in place, left in place on withdrawal, only biopsied → omit these adenomas.
+-	Size: if stated in the text, use exactly as written; otherwise mark as not specified.
+-	Location: as precise as possible (e.g., sigmoid, ascending colon, transverse colon, rectum, left flexure, right flexure, cecum, 18 cm from the anal verge).
+
+report: unremarkable. In the sigmoid a polyp bud, biopsy II. Smooth advancement to the cecum. Here, behind the valve, a 60 × 90 mm adenoid tumor is found. Randomization to STEP in group 3. Good lifting on submucosal injection with HydroJet. Piecemeal complete resection, no bleeding. Small remnants treated with APC until no tumor is macroscopically visible. At the edge of the resection surface a slit-shaped muscularis defect develops, closed with 4 clips, aspiration of free air. Retrieval in net (I)
+Expected output:
+-	Cecum; 60 × 90 mm; piecemeal
+
+report: Advancement to the unremarkable end of the Hartmann's stump at 28 cm from the anal verge. At 18 cm from the anal verge the approx. 1 × 1 cm adenoma, which after submucosal injection with HAES/TB is removed in toto. Through the stoma advancement to the cecal pole, where a small adenoma at the cecal pole is removed with forceps (biopsy I). A further approx. 1.5 × 1 cm flat adenoma opposite the IC valve is biopsied and left in place (biopsy II). Directly on the IC valve a approx. 3 × 2 cm suspicious adenoma is only biopsied (biopsy III). In the ascending colon, 3 sessile adenomas of approx. 5 mm, 8 mm, and 10 mm are found in close proximity, which after submucosal injection with HAES/TB are removed in toto with a snare (biopsy IV). The adenomas are retrieved in a net. A further adenoma in the transverse colon measuring just over 1 cm is left in place on withdrawal. The remaining colon appears unremarkable.
+Expected output:
+-	18 cm from the anal verge; 1 × 1 cm; en-bloc
+-	Cecal pole; not specified; en-bloc
+-	Ascending colon; 5 mm; en-bloc
+-	Ascending colon; 8 mm; en-bloc
+-	Ascending colon; 10 mm; en-bloc
+
+report: 
+Unremarkable on retroflexion. With stiffening advancement to the cecal pole and intubation of the terminal ileum over 15 cm. Unremarkable ileal mucosa. Two folds distal to the IC valve, two 1 cm flat polyps are found which after submucosal injection can be completely removed with the snare; only one can be retrieved (biopsy III). In the distal ascending colon two 1 cm polyps are found, retrieved together after snare resection (biopsy IV). Left flexure removal of one further polyp 1 cm snare (biopsy V) and in the descending colon a pedunculated polyp removed with snare (biopsy VI). Overall pronounced diverticulosis with maximum in the sigmoid.
+Expected output:
+-	IC valve; 1 cm; en-bloc
+-	IC valve; 1 cm; en-bloc
+-	Ascending colon; 1 cm; en-bloc
+-	Ascending colon; 1 cm; en-bloc
+-	Left flexure; 1 cm; en-bloc
+-	Descending colon; not specified; en-bloc
+report: 
+Between 5 and 8 cm from the anal verge a roughly 35 mm flat elevated tumor, alongside 3 satellite lesions each approximately 7 mm, of which one is removed and retrieved (III), one removed, and one left in place. The main lesion is injected and circumcised with HybridKnife, bleeding during the procedure managed with Coag-Grasper. Patient becomes restless, therefore procedure abbreviated and resection in 3 portions with snare. Hemostasis with 3 clips, coagulation. Smooth advancement to the cecum. Throughout the colon, but particularly frequently in the sigmoid, numerous large non-irritated diverticula. In the sigmoid at approximately 25 cm patchy redness (biopsy II). In the descending colon (110 cm on insertion) a flat elevated adenoid tumor 12 mm is injected and resected, alongside a further 5 mm directly resected (I).
+Expected output:
+-	5–8 cm from the anal verge; 35 mm; piecemeal
+-	5–8 cm from the anal verge; 7 mm; en-bloc
+-	5–8 cm from the anal verge; 7 mm; en-bloc
+-	Descending colon; 12 mm; en-bloc
+-	Descending colon; 5 mm; en-bloc
+
+report: 
+Unremarkable sigmoid with numerous diverticula and very angulated. Otherwise smooth passage to the cecum. From the IC valve 2 × biopsy (I) to rule out adenoma. Alongside a flat elevated adenoid tumor 25 × 35 mm, randomization to STEP, good lifting on submucosal injection, subtotal resection in 1 piece (II), remainder treated with APC.
+Expected output:
+-	IC valve; 25 × 35 mm; piecemeal
+Return your answer exclusively as a valid JSON object.
+Exactly two fields are allowed:
+1.	"reasoning": a brief external summary of your reasoning (no internal thoughts, no <think>)
+2.	"answer": a single string containing the final answer. No arrays, no objects, plain text only.
+Formatting rules for "answer":
+-	Each removed lesion on its own line
+-	Format of each line: "<Location>; <Size>; <Removal method>"
+-	Lines separated by "\n"
+-	No additional fields, no extra structures.
+Important:
+-	Output absolutely no text outside the JSON.
+-	No explanations, no comments, no internal thoughts, no <think>.
+-	Only a single JSON object.

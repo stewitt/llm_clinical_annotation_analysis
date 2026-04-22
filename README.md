@@ -1,5 +1,5 @@
 # llm_clinical_annotation_analysis
-A research codebase evaluating how well LLMs extract structured clinical data from German-language colonoscopy reports compared to human expert annotations.
+A research codebase for detecting human annotation errors in structured data extraction from clinical free-text reports using multi-LLM disagreement as a quality control signal. In the corresponding paper, the framework is applied to German-language colonoscopy reports.
 
 Two main pipelines:
 

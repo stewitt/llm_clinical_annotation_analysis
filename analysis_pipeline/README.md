@@ -62,7 +62,7 @@ All input files are Excel (`.xlsx`) and should be placed in the parent directory
 |--------|--------|-------------|
 | `id` | integer | Case identifier |
 | `variable` | Durchm1, Durchm2, Lage, Abtragungsart, mehrere_Polypen | Annotation variable |
-| `value` | 0–4 | Stratum (used for stratified sampling) |
+| `value` | 0–4 | LLM agreement score (used for stratified sampling) |
 | `voter_correct` | A / B / beide / beide falsch / unklar / nicht entscheidbar | Blinded comparison outcome (German labels) |
 | `gemma_out` | 0 / 1 | Binary Gemma prediction |
 
@@ -83,7 +83,7 @@ python main.py
 - Defines strict and broad outcome variables
 - Generates descriptive statistics and crosstabulations
 - Runs bootstrap AUC-ROC and AUC-PR analysis (N=2000, seed=42) with 95% CIs
-- Performs Gemma operating point analysis
+- Performs Gemma point estimate analysis
 - Extrapolates population-level error estimates with bootstrap CIs
 - Saves all figures as PNG (300 DPI) and SVG
 
@@ -141,7 +141,7 @@ RANDOM_SEED = 42
 
 ### Sampling design
 
-Cases were selected using **stratified sampling** by (value, variable):
+Cases were selected using **stratified sampling** by (value (=LLM agreement score), variable(location, diameter, resection type, multiple polyps y/n)):
 - Values 0–2: up to 20 cases per variable
 - Values 3–4: up to 10 cases per variable
 

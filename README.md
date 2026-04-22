@@ -7,4 +7,4 @@ Inference pipeline: Runs free-text colonoscopy reports through local LLMs (via O
 
 Analysis pipeline: Computes error distribution, raw human-llm agreement, inter-rater agreement (Cohen's κ, Fleiss' κ), location match statistics, and cross-model size comparisons
 
-Tech stack: Python, pandas, scikit-learn, Ollama API, Excel I/O, matplotlib (publication figures with bootstrap CIs)
+
